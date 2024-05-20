@@ -3,6 +3,7 @@ import { YOUTUBE_VIDEO_API } from "./constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import ShimmerCard from "./ShimmerCard";
+import ShimmerCardGrid from "./ShimmerCardGrid";
 const Videocontainer = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ const Videocontainer = () => {
       ))}
     </div>
   ) : (
-    <ShimmerCard />
+    <ShimmerCardGrid />
   );
 };
 

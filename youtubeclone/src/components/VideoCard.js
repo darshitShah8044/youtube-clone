@@ -25,7 +25,8 @@ const VideoCard = ({ info }) => {
         {/* Check if viewCount is available before rendering */}
         {viewCount && (
           <li>
-            {formatViewCount(viewCount)} views • {publishedAt.split("T")[0]}
+            {formatViewCount(viewCount)} views •{" "}
+            {getVideoAge(publishedAt.split("T")[0])}
           </li>
         )}
       </ul>
@@ -34,3 +35,35 @@ const VideoCard = ({ info }) => {
 };
 
 export default VideoCard;
+
+function getVideoAge(dateInput) {
+  const now = new Date();
+  const inputDate = new Date(dateInput);
+
+  // Calculate the difference in milliseconds
+  let diff = now - inputDate;
+
+  // Calculate the number of days, months, and years
+  const msInDay = 24 * 60 * 60 * 1000;
+  const msInMonth = msInDay * 30.44; // average days in a month
+  const msInYear = msInDay * 365.25; // average days in a year
+
+  const years = Math.floor(diff / msInYear);
+  diff = diff % msInYear;
+
+  const months = Math.floor(diff / msInMonth);
+  diff = diff % msInMonth;
+
+  const days = Math.floor(diff / msInDay);
+
+  // Construct the output string based on the calculated time difference
+  if (years > 0) {
+    return years === 1 ? "1 year ago" : `${years} years ago`;
+  } else if (months > 0) {
+    return months === 1 ? "1 month ago" : `${months} months ago`;
+  } else if (days > 0) {
+    return days === 1 ? "1 day ago" : `${days} days ago`;
+  } else {
+    return "Few hours ago";
+  }
+}

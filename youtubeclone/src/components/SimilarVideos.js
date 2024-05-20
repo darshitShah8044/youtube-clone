@@ -27,7 +27,7 @@ function SimilarVideos({ videoTitle, videoTags }) {
 
   return (
     <div className="m-2">
-      <h2>Similar Videos</h2>
+      <span className="text-[25px] px-2 p-2">Similar Videos</span>
       <ul>
         {similarVideos.map((video) => (
           <VideoCard info={video} />
